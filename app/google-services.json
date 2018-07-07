@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "881581578793",
+    "firebase_url": "https://mybabyildeir.firebaseio.com",
+    "project_id": "mybabyildeir",
+    "storage_bucket": "mybabyildeir.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881581578793:android:28e2d1650ba0522e",
+        "android_client_info": {
+          "package_name": "br.ufop.ildeir.mybabyildeir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881581578793-9r35bu6hkkj0d49hv5m9u9qc9io1d2a0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufop.ildeir.mybabyildeir",
+            "certificate_hash": "fdf08af7499e7a90cfa1e14b7b7db76c62a9af33"
+          }
+        },
+        {
+          "client_id": "881581578793-ir7ni1u3ck167nfj4t6t00r23hj00kdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoEgdq2TSXyLFY3DhgC2zc-DWihVx44zo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881581578793-ir7ni1u3ck167nfj4t6t00r23hj00kdt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

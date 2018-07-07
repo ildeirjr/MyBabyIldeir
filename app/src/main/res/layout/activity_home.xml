@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufop.ildeir.mybabyildeir.activities.HomeActivity"
+    android:id="@+id/drawerLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/horizontalLinearLayourPadding">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onClickMamada"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:padding="@dimen/taskIconpadding"
+                        android:src="@drawable/mamada" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Mamadas"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:onClick="onClickMamadeira">
+
+                    <ImageView
+                        android:padding="@dimen/taskIconpadding"
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:src="@drawable/mamadeira"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mamadeiras"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:onClick="onClickFralda">
+
+                    <ImageView
+                        android:padding="@dimen/taskIconpadding"
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:src="@drawable/fralda"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fralda suja"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:onClick="onClickSono">
+
+                    <ImageView
+                        android:padding="@dimen/taskIconpadding"
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:src="@drawable/sono"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tempo dormindo"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:onClick="onClickMedicamento">
+
+                    <ImageView
+                        android:padding="@dimen/taskIconpadding"
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:src="@drawable/medicamento"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medicamentos"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:onClick="onClickOutros">
+
+                    <ImageView
+                        android:padding="@dimen/taskIconpadding"
+                        android:layout_width="@dimen/taskIconSize"
+                        android:layout_height="@dimen/taskIconSize"
+                        android:src="@drawable/outros"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Outros"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/taskNameSize"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dialogPadding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtros"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/typeCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo"
+                    android:onClick="onTypeCheckBoxClick"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/dateCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:onClick="onDateCheckBoxClick"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/filterDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:onClick="selectFilterDate"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dialogPadding"
+            android:paddingLeft="@dimen/dialogPadding">
+
+            <TextView
+                android:id="@+id/textList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Atividades de "
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/btnClearTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clearAllTasks"
+                android:src="@drawable/ic_delete"
+                android:tint="#F00"
+                android:layout_weight="8"
+                android:background="#0000"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/tasksListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/tvEmptyListView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dialogPadding"
+                android:text="Sem atividades cadastradas. Adicione uma clicando em um dos ícones acima."
+                android:layout_gravity="center_vertical"
+                android:gravity="center" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/navView"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/nav_header">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
+
+

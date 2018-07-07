@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dialogPadding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data: "
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"/>
+
+        <TextView
+            android:id="@+id/medicamentoDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textAlignment="center"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora: "
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"/>
+
+        <TextView
+            android:id="@+id/medicamentoTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textAlignment="center"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome do medicamento: "
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/medicamentoNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textColor="#000"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantidade: "
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"/>
+
+        <EditText
+            android:id="@+id/medicamentoQtd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textColor="#000"/>
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/medicamentoAnnotations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Anotações"
+        android:inputType="textMultiLine"/>
+
+</LinearLayout>
