@@ -2,14 +2,18 @@ package br.ufop.ildeir.mybabyildeir.activities;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,19 +21,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import br.ufop.ildeir.mybabyildeir.R;
+import br.ufop.ildeir.mybabyildeir.adapters.NotificationAdapter;
 import br.ufop.ildeir.mybabyildeir.adapters.TaskAdapter;
 import br.ufop.ildeir.mybabyildeir.dialogs.add_dialogs.AddFraldaDialog;
 import br.ufop.ildeir.mybabyildeir.dialogs.add_dialogs.AddMamadaDialog;
@@ -45,6 +50,7 @@ import br.ufop.ildeir.mybabyildeir.dialogs.edit_dialogs.EditOutrosDialog;
 import br.ufop.ildeir.mybabyildeir.dialogs.edit_dialogs.EditTempoDormindoDialog;
 import br.ufop.ildeir.mybabyildeir.objects.Task;
 import br.ufop.ildeir.mybabyildeir.singletons.BabySingleton;
+import br.ufop.ildeir.mybabyildeir.singletons.NotificationSingleton;
 import br.ufop.ildeir.mybabyildeir.singletons.TaskSingleton;
 
 public class HomeActivity extends AppCompatActivity {
@@ -57,11 +63,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView babyBirthday;
     private ImageView babySex;
 
-    private CheckBox typeCheckBox;
-    private CheckBox dateCheckBox;
-    private Spinner spinner;
-    private TextView filterDate;
-
     private TaskAdapter taskAdapter;
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -70,11 +71,20 @@ public class HomeActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
 
     private ImageButton clearTasks;
+    private FloatingActionButton fab;
 
     private MediaPlayer mediaPlayer;
     private boolean isPlayingSound = false;
 
+    private CheckBox typeCheckBox;
+    private CheckBox dateCheckBox;
+    private Spinner spinner;
+    private TextView filterDate;
+    private EditText etDate;
+
     private static final String[] TASK_NAMES = {"Mamada", "Mamadeiras", "Fralda suja", "Tempo dormindo", "Medicamentos", "Outros"};
+
+    private boolean isFabSeted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,30 +151,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        typeCheckBox = findViewById(R.id.typeCheckBox);
-        dateCheckBox = findViewById(R.id.dateCheckBox);
-        spinner = findViewById(R.id.spinner);
-        filterDate = findViewById(R.id.filterDate);
-
-        filterDate.setText(simpleDateFormat.format(calendar.getTime()));
-
-        initSpinner();
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                taskAdapter.getTypeFilter().filter(String.valueOf(i));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
         tvList = findViewById(R.id.textList);
         tvList.setText("Atividades de " + BabySingleton.getInstance().getBaby().getName());
 
         clearTasks = findViewById(R.id.btnClearTasks);
+
+        fab = findViewById(R.id.filterBtn);
 
     }
 
@@ -241,45 +233,11 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onTypeCheckBoxClick(View view) {
-        listView.setAdapter(taskAdapter);
-        if(typeCheckBox.isChecked()){
-            taskAdapter.setFilterTypeActive(true);
-        }else{
-            taskAdapter.setFilterTypeActive(false);
-        }
-        taskAdapter.getTypeFilter().filter(String.valueOf(spinner.getSelectedItemPosition()));
+    public void notificationOptionSelected(MenuItem item){
+        startActivity(new Intent(this, NotificationsActivity.class));
     }
 
-    public void onDateCheckBoxClick(View view) {
-        listView.setAdapter(taskAdapter);
-        if(dateCheckBox.isChecked()){
-            taskAdapter.setFilterDateActive(true);
-        }else{
-            taskAdapter.setFilterDateActive(false);
-        }
-        taskAdapter.getDateFilter().filter(simpleDateFormat.format(calendar.getTime()));
-    }
 
-    public void initSpinner(){
-        ArrayAdapter<String> adapterSpinner1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, TASK_NAMES);
-        spinner.setAdapter(adapterSpinner1);
-    }
-
-    public void selectFilterDate(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(HomeActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        calendar.set(Calendar.YEAR,i);
-                        calendar.set(Calendar.MONTH,i1);
-                        calendar.set(Calendar.DAY_OF_MONTH,i2);
-                        filterDate.setText(simpleDateFormat.format(calendar.getTime()));
-                        taskAdapter.getDateFilter().filter(simpleDateFormat.format(calendar.getTime()));
-                        listView.setAdapter(taskAdapter);
-                    }
-                },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
-    }
 
     public void clearAllTasks(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -300,4 +258,102 @@ public class HomeActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+    public void openFilterDialog(View view) {
+        if (!isFabSeted) {
+            LayoutInflater li = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = li.inflate(R.layout.filter_layout, null);
+
+            taskAdapter.setFilterTypeActive(false);
+            taskAdapter.setFilterDateActive(false);
+
+            listView.setEmptyView(findViewById(R.id.tvEmptyFilter));
+
+            typeCheckBox = view.findViewById(R.id.typeCheckBox);
+            dateCheckBox = view.findViewById(R.id.dateCheckBox);
+            spinner = view.findViewById(R.id.spinner);
+            filterDate = view.findViewById(R.id.filterDate);
+            etDate = view.findViewById(R.id.filterDate);
+
+            filterDate.setText(simpleDateFormat.format(calendar.getTime()));
+
+            etDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                            calendar.set(Calendar.YEAR, i);
+                            calendar.set(Calendar.MONTH, i1);
+                            calendar.set(Calendar.DAY_OF_MONTH, i2);
+                            filterDate.setText(simpleDateFormat.format(calendar.getTime()));
+                        }
+                    }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                    datePickerDialog.show();
+                }
+            });
+
+            initSpinner();
+
+            typeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b) {
+                        taskAdapter.setFilterTypeActive(true);
+                    } else {
+                        taskAdapter.setFilterTypeActive(false);
+                    }
+                }
+            });
+
+            dateCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b) {
+                        taskAdapter.setFilterDateActive(true);
+                    } else {
+                        taskAdapter.setFilterDateActive(false);
+                    }
+                }
+            });
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Filtrar atividades");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if (typeCheckBox.isChecked() || dateCheckBox.isChecked()) {
+                        taskAdapter.filter(String.valueOf(spinner.getSelectedItemPosition()), simpleDateFormat.format(calendar.getTime()));
+                        //listView.setAdapter(new NotificationAdapter(NotificationSingleton.getInstance().getNotifications(), getApplicationContext()));
+                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.dark_red)));
+                        fab.setImageResource(R.drawable.ic_close);
+                        isFabSeted = true;
+                    }
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+        } else {
+            taskAdapter = new TaskAdapter(TaskSingleton.getInstance().getTasks(), this);
+            listView.setAdapter(taskAdapter);
+            listView.setEmptyView(findViewById(R.id.tvEmptyListView));
+            fab.setImageResource(R.drawable.ic_filter);
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+            isFabSeted = false;
+        }
+    }
+
+    public void initSpinner(){
+        ArrayAdapter<String> adapterSpinner1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, TASK_NAMES);
+        spinner.setAdapter(adapterSpinner1);
+    }
+
 }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dialogPadding"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome:"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/notificationNameDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_weight="0.5"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+        <EditText
+            android:id="@+id/notificationAnnotationDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textColor="#000"
+            android:hint="Anotações"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data:"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/notificationDateDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textAlignment="center"
+            android:layout_weight="0.5"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora:"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/notificationTimeDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:textAlignment="center"
+            android:layout_weight="0.5"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/taskDialogPaddingTopBottom"
+        android:paddingBottom="@dimen/taskDialogPaddingTopBottom">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frequência:"
+            android:textSize="@dimen/taskDialogTextSize"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/notificationSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".activities.AddBabyActivity" />
         <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".activities.EditBabyActivity"></activity>
+        <activity android:name=".activities.EditBabyActivity" />
+        <activity android:name=".activities.NotificationsActivity" />
+        <activity android:name=".activities.LaunchNotificationActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -19,6 +22,7 @@ import br.ufop.ildeir.mybabyildeir.singletons.TaskSingleton;
 
 public class EditBabyActivity extends AppCompatActivity {
 
+    private TextView tvEditBaby;
     private EditText etName;
     private EditText etBirthday;
     private RadioGroup radioGroup;
@@ -33,11 +37,14 @@ public class EditBabyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_baby);
 
+        tvEditBaby = findViewById(R.id.tvAddBaby);
         etName = findViewById(R.id.editNameBaby);
         etBirthday = findViewById(R.id.editBirthdayBaby);
         radioGroup = findViewById(R.id.radioGroup);
         radioButtonMale = findViewById(R.id.radioBtnMale);
         radioButtonFemale = findViewById(R.id.radioBtnFemale);
+
+        tvEditBaby.setText("Editar bebê");
 
         etBirthday.setOnClickListener(new View.OnClickListener() {
             @Override

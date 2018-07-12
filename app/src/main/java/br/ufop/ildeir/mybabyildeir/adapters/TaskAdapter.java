@@ -1,6 +1,7 @@
 package br.ufop.ildeir.mybabyildeir.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class TaskAdapter extends BaseAdapter{
 
 
     private ArrayList<Task> items;
-    private ArrayList<Task> tasks;
+    private static ArrayList<Task> tasks;
     private Context context;
     private boolean filterTypeActive;
     private boolean filterDateActive;
@@ -103,77 +104,53 @@ public class TaskAdapter extends BaseAdapter{
         return v;
     }
 
-    public Filter getTypeFilter(){
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-
-                int index = Integer.valueOf(charSequence.toString());
-                FilterResults filterResults = new FilterResults();
-                if(filterTypeActive) {
-                    ArrayList<Task> filteredTasks = new ArrayList<>();
-                    for (Task t : items) {
-                        if (t.getTaskType() == index) {
-                            filteredTasks.add(t);
-                        }
-                    }
-                    filterResults.count = filteredTasks.size();
-                    filterResults.values = filteredTasks;
-                }else{
-                    filterResults.count = items.size();
-                    filterResults.values = items;
-                }
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                tasks = (ArrayList<Task>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-        return filter;
+    public void filter(String spinnerPosition, String date){
+        if(filterTypeActive && !filterDateActive){
+            typeFilter(spinnerPosition);
+        } else if(!filterTypeActive && filterDateActive){
+            dateFilter(date);
+        } else if(filterTypeActive && filterDateActive){
+            typeFilter(spinnerPosition);
+            dateFilter(date);
+        }
     }
 
-    public Filter getDateFilter(){
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                try {
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date date = simpleDateFormat.parse(charSequence.toString());
-                    calendar.setTime(date);
-                    FilterResults filterResults = new FilterResults();
-                    if(filterDateActive) {
-                        ArrayList<Task> filteredTasks = new ArrayList<>();
-                        for (Task t : items) {
-                            if (t.getTime().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) &&
-                                t.getTime().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
-                                t.getTime().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
-                                filteredTasks.add(t);
-                            }
-                        }
-                        filterResults.count = filteredTasks.size();
-                        filterResults.values = filteredTasks;
-                    }else{
-                        filterResults.count = items.size();
-                        filterResults.values = items;
-                    }
-                    return filterResults;
-                } catch (ParseException e) {
-                    e.printStackTrace();
+    public void typeFilter(String spinnerPosition){
+        int index = Integer.valueOf(spinnerPosition);
+        if(filterTypeActive) {
+            ArrayList<Task> filteredTasks = new ArrayList<>();
+            for (Task t : tasks) {
+                if (t.getTaskType() == index) {
+                    filteredTasks.add(t);
                 }
-                return null;
             }
+            tasks = filteredTasks;
+            notifyDataSetChanged();
+        }
+    }
 
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                tasks = (ArrayList<Task>) filterResults.values;
+    public void dateFilter(String dateString){
+        try {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = null;
+            date = simpleDateFormat.parse(dateString);
+            calendar.setTime(date);
+            if(filterDateActive) {
+                ArrayList<Task> filteredTasks = new ArrayList<>();
+                for (Task t : tasks) {
+                    if (t.getTime().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) &&
+                            t.getTime().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
+                            t.getTime().get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
+                        filteredTasks.add(t);
+                    }
+                }
+                tasks = filteredTasks;
                 notifyDataSetChanged();
             }
-        };
-        return filter;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isFilterTypeActive() {

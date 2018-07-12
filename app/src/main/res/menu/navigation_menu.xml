@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/babyEdit"
-        android:title="Editar bebê"
-        android:icon="@drawable/ic_edit"
-        android:onClick="editBaby">
+    <group>
+        <item
+            android:id="@+id/babyEdit"
+            android:title="Editar bebê"
+            android:icon="@drawable/ic_edit"
+            android:onClick="editBaby">
 
-    </item>
+        </item>
 
-    <item
-        android:id="@+id/babyDelete"
-        android:title="Excluir Bebê"
-        android:icon="@drawable/ic_delete"
-        android:onClick="deleteBaby">
+        <item
+            android:id="@+id/babyDelete"
+            android:title="Excluir Bebê"
+            android:icon="@drawable/ic_delete"
+            android:onClick="deleteBaby">
 
-    </item>
+        </item>
+    </group>
+
+    <group>
+
+        <item
+            android:id="@+id/optionNotifications"
+            android:title="Lembretes"
+            android:icon="@drawable/ic_notifications"
+            android:onClick="notificationOptionSelected">
+
+        </item>
+
+    </group>
+
+
 
 </menu>

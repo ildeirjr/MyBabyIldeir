@@ -5,7 +5,7 @@
     <dimen name="taskIconSize">80dp</dimen>
     <dimen name="taskIconpadding">15dp</dimen>
     <dimen name="horizontalLinearLayourPadding">10dp</dimen>
-    <dimen name="taskDialogTextSize">18dp</dimen>
+    <dimen name="taskDialogTextSize">16dp</dimen>
     <dimen name="taskDialogPaddingTopBottom">10dp</dimen>
     <dimen name="dialogPadding">20dp</dimen>
     <dimen name="addBabyPadding">10dp</dimen>
